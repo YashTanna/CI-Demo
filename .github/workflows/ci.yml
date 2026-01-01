@@ -1,0 +1,23 @@
+name: ci.yml
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Setup java 24
+        uses: actions/checkout@v4
+        with:
+          java-version: '24'
+          distribution: 'temurin'
+          cache: maven
+      - name: run
+        uses: mvn clean test package
